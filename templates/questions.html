@@ -2,25 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question</title>
+    <title>Question {{ q_index + 1 }}</title>
     <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="container">
-        <h2>Question {{ q_index + 1 }}</h2>
-        <p>{{ question.question }}</p>
-        <form action="/question" method="post">
-            {% for option in question.options %}
-                <label>
-                    <input type="radio" name="answer" value="{{ option }}" required>
-                    {{ option }}
-                </label><br>
-            {% endfor %}
-
-            <input type="hidden" name="q_index" value="{{ q_index }}">
-            <input type="hidden" name="score" value="{{ score }}">
-            <button type="submit">Next</button>
-        </form>
+    <div class="quiz-container">
+        <div class="question-header">
+            <span class="question-number">Question {{ q_index + 1 }}</span>
+            <span class="score">Score: {{ score }}</span>
+        </div>
+        <div class="question-body">
+            <h2>{{ question.question }}</h2>
+            <form action="/question" method="post">
+                {% if question.type == 'multiple_choice' %}
+                    {% for option in question.options %}
+                        <label class="option">
+                            <input type="radio" name="answer" value="{{ option }}" required>
+                            <span>{{ option }}</span>
+                        </label>
+                    {% endfor %}
+                {% elif question.type == 'true_false' %}
+                    <label class="option">
+                        <input type="radio" name="answer" value="True" required>
+                        <span>True</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="answer" value="False" required>
+                        <span>False</span>
+                    </label>
+                {% elif question.type == 'text' %}
+                    <input type="text" name="answer" class="text-answer" placeholder="Type your answer..." required>
+                {% endif %}
+                <input type="hidden" name="q_index" value="{{ q_index }}">
+                <input type="hidden" name="score" value="{{ score }}">
+                <button type="submit" class="next-btn">Next</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

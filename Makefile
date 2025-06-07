@@ -1,39 +1,38 @@
-# Makefile for Python Quiz Game App
+# Makefile for Python Quiz Game App (Windows compatible)
 
 APP_NAME = quizgame
-PYTHON = python3
+PYTHON = python
 VENV = .venv
-ACTIVATE = $(VENV)/bin/activate
+ACTIVATE = $(VENV)\Scripts\activate
 REQS = requirements.txt
 
 # Default target
 all: run
 
 # Create virtual environment
-$(VENV)/bin/activate:
+$(VENV)\Scripts\activate:
 	@echo "Creating virtual environment..."
 	$(PYTHON) -m venv $(VENV)
 
 # Install dependencies
-install: $(VENV)/bin/activate
+install: $(VENV)\Scripts\activate
 	@echo "Installing dependencies..."
-	. $(ACTIVATE) && pip install --upgrade pip && pip install -r $(REQS)
+	$(VENV)\Scripts\python.exe -m pip install --upgrade pip
+	$(VENV)\Scripts\python.exe -m pip install -r $(REQS)
 
 # Run the app
 run: install
 	@echo "Starting the quiz app with uvicorn..."
-	. $(ACTIVATE) && uvicorn main:app --reload
+	$(VENV)\Scripts\python.exe -m uvicorn main:app --reload
 
 # Clean environment
 clean:
 	@echo "Removing virtual environment..."
-	rm -rf $(VENV)
+	rmdir /S /Q $(VENV)
 
 # Freeze requirements
 freeze:
-	. $(ACTIVATE) && pip freeze > $(REQS)
-
-# Test the app
+	$(VENV)\Scripts\python.exe -m pip freeze > $(REQS)
 
 # Git push changes
 .PHONY: push
@@ -46,6 +45,7 @@ push:
 # Git pull latest changes
 git-pull:
 	@git pull
+
 # Help message
 help:
 	@echo "Makefile commands:"

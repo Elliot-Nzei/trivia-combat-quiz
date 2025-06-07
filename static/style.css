@@ -1,47 +1,98 @@
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #667eea, #764ba2);
+.quiz-container {
+    background: rgba(255,255,255,0.15);
+    padding: 32px 36px;
+    border-radius: 18px;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    font-size: 1.1em;
+}
+
+.question-number {
+    font-weight: bold;
     color: #fff;
+    background: #667eea;
+    padding: 6px 16px;
+    border-radius: 8px;
+}
+
+.score {
+    color: #fff;
+    background: #764ba2;
+    padding: 6px 16px;
+    border-radius: 8px;
+}
+
+.question-body h2 {
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 1.3em;
+}
+
+form {
+    margin-top: 10px;
+}
+
+.option {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-}
-
-h1, h2 {
-    margin-bottom: 20px;
-}
-
-button {
-    background: #ffffff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 10px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
     cursor: pointer;
+    transition: background 0.2s;
+}
+
+.option:hover {
+    background: rgba(255,255,255,0.28);
+}
+
+.option input[type="radio"] {
+    margin-right: 12px;
+    accent-color: #667eea;
+}
+
+.text-answer {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 18px;
+    font-size: 1em;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+}
+
+.text-answer::placeholder {
+    color: #e0e0e0;
+}
+
+.next-btn {
+    width: 100%;
+    margin-top: 10px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: #fff;
+    border: none;
+    padding: 14px 0;
+    border-radius: 10px;
+    font-size: 1.1em;
     font-weight: bold;
-    color: #333;
-    transition: background 0.3s ease;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-button:hover {
-    background: #ddd;
-}
-
-label {
-    display: block;
-    margin: 10px 0;
-    text-align: left;
+.next-btn:hover {
+    background: linear-gradient(to right, #5a67d8, #6b21a8);
 }
