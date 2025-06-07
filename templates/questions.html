@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Question {{ q_index + 1 }}</h2>
+        <p>{{ question.question }}</p>
+        <form action="/question" method="post">
+            {% for option in question.options %}
+                <label>
+                    <input type="radio" name="answer" value="{{ option }}" required>
+                    {{ option }}
+                </label><br>
+            {% endfor %}
+
+            <input type="hidden" name="q_index" value="{{ q_index }}">
+            <input type="hidden" name="score" value="{{ score }}">
+            <button type="submit">Next</button>
+        </form>
+    </div>
+</body>
+</html>
